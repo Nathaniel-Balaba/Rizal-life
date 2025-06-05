@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Republic Act 1425: The Rizal Law</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#0047AB',secondary:'#FFD700'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/rizal.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .timeline-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            left: 1.25rem;
+            top: 2.5rem;
+            bottom: -1.25rem;
+            width: 2px;
+            background-color: #0047AB;
+        }
+        .quiz-option:hover {
+            border-color: #0047AB;
+        }
+        .quiz-option.selected {
+            border-color: #0047AB;
+            background-color: rgba(0, 71, 171, 0.1);
+        }
+        .quiz-option.correct {
+            border-color: #10B981;
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+        .quiz-option.incorrect {
+            border-color: #EF4444;
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #e5e7eb;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #0047AB;
+            cursor: pointer;
+        }
+        .custom-checkbox {
+            display: inline-block;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+        }
+        .custom-checkbox:hover input ~ .checkmark {
+            border-color: #0047AB;
+        }
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #0047AB;
+            border-color: #0047AB;
+        }
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+        .custom-checkbox .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e5e7eb;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #0047AB;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .custom-radio {
+            display: inline-block;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .custom-radio input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .radio-mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+        }
+        .custom-radio:hover input ~ .radio-mark {
+            border-color: #0047AB;
+        }
+        .custom-radio input:checked ~ .radio-mark {
+            border-color: #0047AB;
+        }
+        .radio-mark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .custom-radio input:checked ~ .radio-mark:after {
+            display: block;
+        }
+        .custom-radio .radio-mark:after {
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #0047AB;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#" class="text-2xl font-['Pacifico'] text-primary">Rizal Law</a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+                <a href="#rizal-law" class="text-gray-700 hover:text-primary transition-colors">The Rizal Law</a>
+                <a href="#19th-century" class="text-gray-700 hover:text-primary transition-colors">19th Century</a>
+                <a href="#early-life" class="text-gray-700 hover:text-primary transition-colors">Early Life</a>
+                <a href="#higher-education" class="text-gray-700 hover:text-primary transition-colors">Higher Education</a>
+                <a href="#quizzes" class="text-gray-700 hover:text-primary transition-colors">Quizzes</a>
+            </div>
+            
+            <button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700" id="mobile-menu-button">
+                <i class="ri-menu-line text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white py-4 px-4 shadow-md" id="mobile-menu">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+                <a href="#rizal-law" class="text-gray-700 hover:text-primary transition-colors">The Rizal Law</a>
+                <a href="#19th-century" class="text-gray-700 hover:text-primary transition-colors">19th Century</a>
+                <a href="#early-life" class="text-gray-700 hover:text-primary transition-colors">Early Life</a>
+                <a href="#higher-education" class="text-gray-700 hover:text-primary transition-colors">Higher Education</a>
+                <a href="#quizzes" class="text-gray-700 hover:text-primary transition-colors">Quizzes</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">Republic Act 1425: The Rizal Law</h1>
+                <p class="text-xl text-gray-200 mb-8">Discover the life and legacy of José Rizal, the national hero of the Philippines, through an interactive learning experience designed for students and educators.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#rizal-law" class="px-6 py-3 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors shadow-lg whitespace-nowrap">Get Started</a>
+                    <a href="#quizzes" class="px-6 py-3 bg-white text-primary font-medium rounded-button hover:bg-gray-100 transition-colors shadow-lg whitespace-nowrap">Take a Quiz</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Explore Key Topics</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Dive into the comprehensive study of José Rizal's life, works, and the law that made his legacy an essential part of Philippine education.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Topic Card 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20document%20or%20scroll%20representing%20Republic%20Act%201425%20with%20Philippine%20flag%20elements%20and%20educational%20symbols.%20The%20image%20should%20have%20a%20formal%2C%20legislative%20appearance%20with%20a%20clean%20background%20suitable%20for%20a%20website%20about%20Philippine%20law.%20Include%20subtle%20elements%20that%20represent%20education%20and%20national%20identity.&width=600&height=400&seq=rizal2&orientation=landscape" alt="Republic Act 1425" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">The Rizal Law</h3>
+                        <p class="text-gray-600 mb-4">Understand the history and significance of Republic Act 1425 and its impact on Philippine education.</p>
+                        <a href="#rizal-law" class="text-primary font-medium hover:underline flex items-center">
+                            Learn More
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Topic Card 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20scene%20depicting%2019th%20century%20Philippines%20during%20Spanish%20colonial%20period%2C%20showing%20a%20street%20scene%20with%20Spanish%20colonial%20architecture%2C%20Filipino%20locals%20in%20period%20clothing%2C%20and%20elements%20of%20daily%20life.%20The%20image%20should%20have%20historical%20accuracy%20with%20warm%20lighting%20that%20evokes%20the%20period%2C%20creating%20a%20contextual%20background%20for%20Jose%20Rizals%20era.&width=600&height=400&seq=rizal3&orientation=landscape" alt="19th Century Philippines" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">19th Century Philippines</h3>
+                        <p class="text-gray-600 mb-4">Explore the historical context and social conditions of the Philippines during Rizal's time.</p>
+                        <a href="#19th-century" class="text-primary font-medium hover:underline flex items-center">
+                            Learn More
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Topic Card 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20scene%20depicting%20young%20Jose%20Rizal%20with%20his%20family%20in%20Calamba%2C%20Laguna%2C%20showing%20a%20traditional%20Filipino%20home%20with%20period-accurate%20details.%20The%20image%20should%20include%20elements%20of%20Filipino%20family%20life%20in%20the%20late%2019th%20century%2C%20with%20warm%20lighting%20and%20a%20focus%20on%20education%2C%20as%20Rizal%20is%20shown%20perhaps%20reading%20or%20studying%20with%20family%20members%20nearby.&width=600&height=400&seq=rizal4&orientation=landscape" alt="Rizal's Early Life" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Early Life</h3>
+                        <p class="text-gray-600 mb-4">Discover Rizal's family background, childhood experiences, and early education.</p>
+                        <a href="#early-life" class="text-primary font-medium hover:underline flex items-center">
+                            Learn More
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Topic Card 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=Jose%20Rizal%20in%20Europe%2C%20dressed%20in%20formal%2019th%20century%20attire%2C%20standing%20in%20front%20of%20European%20architecture%20or%20in%20an%20academic%20setting.%20The%20image%20should%20depict%20Rizal%20during%20his%20studies%20abroad%2C%20perhaps%20with%20books%20or%20scientific%20instruments%2C%20showing%20his%20scholarly%20pursuits.%20The%20lighting%20should%20be%20natural%20and%20the%20scene%20should%20convey%20his%20intellectual%20journey%20in%20Europe.&width=600&height=400&seq=rizal5&orientation=landscape" alt="Rizal's Higher Education" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Higher Education</h3>
+                        <p class="text-gray-600 mb-4">Learn about Rizal's academic pursuits, travels abroad, and intellectual development.</p>
+                        <a href="#higher-education" class="text-primary font-medium hover:underline flex items-center">
+                            Learn More
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Rizal Law Section -->
+    <section id="rizal-law" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Republic Act 1425: The Rizal Law</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600">Understanding the legislation that made Rizal's works a cornerstone of Philippine education</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                    <h3 class="text-2xl font-bold mb-4">Historical Background</h3>
+                    <p class="text-gray-700 mb-6">Republic Act No. 1425, commonly known as the Rizal Law, was enacted on June 12, 1956. Authored by Senator Claro M. Recto, this legislation mandates the teaching of José Rizal's life, works, and writings in all schools, colleges, and universities in the Philippines. The law was created to inspire patriotism and national identity among Filipino students by studying the life and works of the national hero.</p>
+                    
+                    <div class="bg-blue-50 border-l-4 border-primary p-4 mb-6">
+                        <p class="text-gray-700 italic">"The purpose of this Act is to honor José Rizal, to rekindle the spirit of patriotism and love of country, especially among the youth, and to instill appreciation for the works, writings, and contribution of José Rizal in the struggle against foreign domination."</p>
+                        <p class="text-gray-500 mt-2">— Excerpt from Republic Act No. 1425</p>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Key Provisions</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">1</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Mandatory Course</h4>
+                                <p class="text-gray-700">All schools, colleges, and universities must include courses on the life, works, and writings of José Rizal, particularly his novels Noli Me Tangere and El Filibusterismo.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">2</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Original Texts</h4>
+                                <p class="text-gray-700">The law requires that the original or unexpurgated editions of Noli Me Tangere and El Filibusterismo be used as basic texts. Translations to English, Filipino, and other local dialects are permitted.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">3</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Graduation Requirement</h4>
+                                <p class="text-gray-700">The completion of courses on Rizal is required for graduation from any college or university.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">4</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Availability of Materials</h4>
+                                <p class="text-gray-700">The Board of National Education is tasked with ensuring the availability of adequate copies of Rizal's works for all educational institutions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Controversies and Implementation</h3>
+                    <p class="text-gray-700 mb-4">The Rizal Law faced significant opposition, particularly from religious sectors concerned about anti-clerical themes in Rizal's novels. Senator Recto had to compromise by including a provision allowing students with religious objections to be exempt from reading the novels, though they would still need to study Rizal's life and other writings.</p>
+                    
+                    <p class="text-gray-700 mb-4">Despite initial challenges, the law has been successfully implemented across the Philippine educational system. Today, courses on Rizal's life and works are standard components of college curricula, typically as a 3-unit course covering his biography, political and social ideas, and literary contributions.</p>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Significance and Impact</h3>
+                    <p class="text-gray-700 mb-4">The Rizal Law has played a crucial role in preserving and promoting Rizal's legacy among generations of Filipinos. By making his works mandatory reading, the law ensures that his ideas on freedom, education, and national identity continue to influence Philippine society.</p>
+                    
+                    <p class="text-gray-700">Moreover, the law has contributed to the development of Filipino nationalism and critical thinking among students, encouraging them to reflect on issues of social justice, governance, and cultural identity that remain relevant in contemporary Philippine society.</p>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#rizal-law-quiz" class="px-6 py-3 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors shadow-md whitespace-nowrap">Test Your Knowledge</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 19th Century Philippines Section -->
+    <section id="19th-century" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">19th Century Philippines as Rizal's Context</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600">Understanding the social, political, and cultural landscape that shaped Rizal's worldview</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                    <div class="flex flex-col md:flex-row gap-8 mb-8">
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold mb-4">Spanish Colonial Rule</h3>
+                            <p class="text-gray-700 mb-4">By the 19th century, the Philippines had been under Spanish colonial rule for over three centuries. The colonial administration was characterized by:</p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li>A centralized government headed by a Governor-General appointed by Spain</li>
+                                <li>The encomienda system, which granted Spanish officials the right to collect tribute from the natives</li>
+                                <li>The implementation of polo y servicio (forced labor)</li>
+                                <li>Strong influence of the Catholic Church in governance and daily life</li>
+                            </ul>
+                            <p class="text-gray-700">The Spanish colonial period saw the transformation of pre-colonial barangays into pueblos (towns) centered around a church and plaza, establishing the foundation for modern Philippine municipalities.</p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="https://readdy.ai/api/search-image?query=A%20detailed%20scene%20of%2019th%20century%20Manila%20under%20Spanish%20colonial%20rule%2C%20showing%20Spanish%20colonial%20architecture%2C%20Filipino%20and%20Spanish%20people%20in%20period%20clothing%2C%20and%20elements%20of%20colonial%20administration.%20The%20image%20should%20depict%20the%20social%20hierarchy%20with%20Spanish%20officials%2C%20friars%2C%20and%20Filipino%20natives%20in%20their%20respective%20social%20positions%2C%20with%20accurate%20historical%20details%20of%20buildings%2C%20transportation%2C%20and%20daily%20life.&width=600&height=400&seq=rizal6&orientation=landscape" alt="Spanish Colonial Philippines" class="w-full h-auto rounded-lg shadow-sm">
+                            <p class="text-sm text-gray-500 mt-2 italic">Manila under Spanish colonial rule in the 19th century</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Social Structure and Classes</h3>
+                    <p class="text-gray-700 mb-4">The social hierarchy in 19th century Philippines was rigid and based primarily on racial ancestry and wealth:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2 text-primary">Peninsulares</h4>
+                            <p class="text-gray-700">Spanish-born Spaniards who occupied the highest government positions and enjoyed the most privileges</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2 text-primary">Insulares (Creoles)</h4>
+                            <p class="text-gray-700">Spaniards born in the Philippines who held significant wealth but faced discrimination from peninsulares</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2 text-primary">Mestizos</h4>
+                            <p class="text-gray-700">People of mixed ancestry (Spanish-Filipino or Chinese-Filipino) who formed the emerging middle class</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2 text-primary">Indios</h4>
+                            <p class="text-gray-700">Native Filipinos who constituted the majority of the population and occupied the lowest social positions</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-6">Rizal's family belonged to the principalia class, a privileged group of native elites who served as intermediaries between the Spanish authorities and the common people. This position afforded Rizal educational opportunities unavailable to most Filipinos, while also exposing him to the injustices of colonial rule.</p>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Economic Conditions</h3>
+                    <p class="text-gray-700 mb-4">The 19th century saw significant economic changes in the Philippines:</p>
+                    
+                    <div class="bg-blue-50 border-l-4 border-primary p-4 mb-6">
+                        <h4 class="text-xl font-semibold mb-2">Opening of Philippine Ports (1834)</h4>
+                        <p class="text-gray-700">The opening of Philippine ports to international trade ended the galleon trade monopoly and integrated the Philippines into the global economy. This led to the rise of cash crop agriculture, particularly sugar, abaca, and tobacco.</p>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">The economic changes created a new class of wealthy Filipino landowners and merchants, including Rizal's family, who were involved in sugar production and leasing land from the Dominican friars. However, most Filipinos remained impoverished farmers or laborers working under exploitative conditions.</p>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Religious and Educational Systems</h3>
+                    <div class="flex flex-col md:flex-row gap-8 mb-8">
+                        <div class="md:w-1/2">
+                            <img src="https://readdy.ai/api/search-image?query=A%2019th%20century%20Filipino%20classroom%20scene%20showing%20Spanish%20friars%20teaching%20Filipino%20students.%20The%20image%20should%20depict%20the%20educational%20environment%20of%20the%20period%20with%20period-accurate%20details%20of%20classroom%20setup%2C%20teaching%20materials%2C%20and%20student%20attire.%20The%20lighting%20should%20be%20natural%2C%20showing%20the%20religious%20influence%20on%20education%20during%20Spanish%20colonial%20times.&width=600&height=400&seq=rizal7&orientation=landscape" alt="Education in 19th Century Philippines" class="w-full h-auto rounded-lg shadow-sm">
+                            <p class="text-sm text-gray-500 mt-2 italic">Education under the Spanish colonial system</p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <h4 class="text-xl font-semibold mb-2">Religious Dominance</h4>
+                            <p class="text-gray-700 mb-4">The Catholic Church wielded enormous influence in the Philippines, controlling education, owning vast tracts of land, and heavily influencing government policies. Religious orders (Dominicans, Augustinians, Franciscans, Recollects, and Jesuits) dominated various aspects of Filipino life.</p>
+                            
+                            <h4 class="text-xl font-semibold mb-2">Limited Education</h4>
+                            <p class="text-gray-700">Education was primarily religious in nature and limited to the elite. The University of Santo Tomas (founded in 1611) and Ateneo Municipal (now Ateneo de Manila) were among the few institutions of higher learning. Most Filipinos received minimal or no formal education, contributing to high illiteracy rates.</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Reform and Revolutionary Movements</h3>
+                    <p class="text-gray-700 mb-4">The 19th century witnessed the emergence of movements challenging Spanish colonial rule:</p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">1</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Secularization Movement</h4>
+                                <p class="text-gray-700">Filipino priests advocated for equal treatment with Spanish priests and greater roles in parish administration. The execution of three Filipino priests—Gomez, Burgos, and Zamora (GOMBURZA)—in 1872 for alleged involvement in the Cavite Mutiny became a turning point in Philippine history and deeply influenced Rizal.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">2</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Propaganda Movement</h4>
+                                <p class="text-gray-700">Educated Filipinos in Europe, including Rizal, Marcelo H. del Pilar, and Graciano Lopez Jaena, advocated for reforms through writings and political activities. They published La Solidaridad, a newspaper that called for Philippine representation in the Spanish Cortes, equal rights for Filipinos, and other reforms.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">3</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Revolutionary Movement</h4>
+                                <p class="text-gray-700">As peaceful reform efforts failed, more radical movements emerged. The Katipunan, founded by Andres Bonifacio in 1892, sought independence through armed revolution. The Philippine Revolution began in 1896, shortly after Rizal's execution.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Cultural and Intellectual Developments</h3>
+                    <p class="text-gray-700 mb-4">The 19th century was a period of cultural awakening for the Philippines:</p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-6">
+                        <li>The emergence of a Filipino national consciousness and identity</li>
+                        <li>Development of Filipino literature, including poetry, essays, and novels</li>
+                        <li>Increased interest in pre-colonial Philippine history and culture</li>
+                        <li>Influence of European Enlightenment ideas on educated Filipinos</li>
+                    </ul>
+                    
+                    <p class="text-gray-700">This cultural renaissance, often referred to as the Filipino Enlightenment or Ilustrado movement, provided the intellectual foundation for both the reform and revolutionary movements. Rizal was at the forefront of this cultural awakening, using his literary works to articulate Filipino grievances and aspirations.</p>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#19th-century-quiz" class="px-6 py-3 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors shadow-md whitespace-nowrap">Test Your Knowledge</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Early Life Section -->
+    <section id="early-life" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Rizal's Life: Family, Childhood, and Early Education</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600">Exploring the formative years that shaped the national hero of the Philippines</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                    <h3 class="text-2xl font-bold mb-4">Family Background</h3>
+                    
+                    <div class="flex flex-col md:flex-row gap-8 mb-8">
+                        <div class="md:w-1/2">
+                            <p class="text-gray-700 mb-4">José Rizal was born on June 19, 1861, in Calamba, Laguna, to a prosperous family of mixed ancestry:</p>
+                            
+                            <h4 class="text-xl font-semibold mb-2">Parents</h4>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li><strong>Francisco Mercado Rizal:</strong> A Filipino farmer who leased land from the Dominican friars and was educated at the College of San José in Manila</li>
+                                <li><strong>Teodora Alonso Realonda:</strong> A highly educated woman from a prominent family in Manila who significantly influenced Rizal's intellectual development</li>
+                            </ul>
+                        </div>
+                        <div class="md:w-1/2">
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <h4 class="text-xl font-semibold mb-4 text-center">The Rizal Family</h4>
+                                <img src="images/family.jpg" alt="Rizal Family" class="w-full h-auto rounded-lg shadow-sm mb-4">
+                                <p class="text-gray-700 text-sm italic text-center">Rizal's immediate family had a profound influence on his development and values</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xl font-semibold mb-4">Rizal's Siblings - The Mercado-Rizal Children</h4>
+                    <p class="text-gray-700 mb-6">José Rizal was the seventh of eleven children in the Mercado-Rizal family. Each of his siblings played important roles in his life and contributed to his development as a person and national hero:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">1. Saturnina Rizal (1850-1913)</h5>
+                            <p class="text-gray-700 text-sm">The eldest child and only sister older than José. She was known for her strong character and intelligence. Saturnina supported José's education financially and emotionally throughout his studies. She married Manuel Timoteo Hidalgo and was often called "Neneng" by the family.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">2. Paciano Rizal (1851-1930)</h5>
+                            <p class="text-gray-700 text-sm">José's only brother and closest confidant. Paciano was highly educated and served as José's mentor and protector. He sacrificed his own career to support José's education abroad. Paciano was also involved in revolutionary activities and was a member of the reform movement.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">3. Narcisa Rizal (1852-1939)</h5>
+                            <p class="text-gray-700 text-sm">Known as "Sisa" in the family, she was gentle and caring. Narcisa married Antonio López and was known for her devotion to her family. She lived the longest among all the siblings and witnessed the recognition of José as a national hero.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">4. Olympia Rizal (1855-1887)</h5>
+                            <p class="text-gray-700 text-sm">A cheerful and vivacious sister who married Silvestre Ubaldo. Olympia was known for her wit and humor, often bringing joy to family gatherings. She died young at the age of 32, which deeply saddened José during his time in Europe.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">5. Lucia Rizal (1857-1919)</h5>
+                            <p class="text-gray-700 text-sm">A quiet and reserved sister who married Mariano Herbosa, a town mate from Calamba. Lucia was known for her domestic skills and her dedication to her family. She maintained correspondence with José during his travels abroad.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">6. María Rizal (1859-1945)</h5>
+                            <p class="text-gray-700 text-sm">Known as "Biang," she married Daniel Faustino Cruz. María was particularly close to José and was known for her intelligence and strong personality. She was one of the siblings who actively supported José's endeavors and shared his patriotic sentiments.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">8. Concepción Rizal (1862-1865)</h5>
+                            <p class="text-gray-700 text-sm">Known as "Concha," she was José's younger sister who died at the tender age of three. Her death deeply affected young José and was one of his earliest encounters with loss and mortality. This experience influenced his later reflections on life and death.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">9. Josefa Rizal (1865-1945)</h5>
+                            <p class="text-gray-700 text-sm">Known as "Panggoy," she remained unmarried throughout her life and was considered the most religious among the siblings. Josefa was epileptic but was known for her gentle nature and devotion to the family. She took care of their parents in their old age.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">10. Trinidad Rizal (1868-1951)</h5>
+                            <p class="text-gray-700 text-sm">Known as "Trining," she also remained unmarried and was very close to José. Trinidad was entrusted with José's last poem "Mi Último Adiós" (My Last Farewell) hidden in an alcohol stove before his execution. She was instrumental in preserving José's memory and legacy.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="text-lg font-semibold mb-2 text-primary">11. Soledad Rizal (1870-1929)</h5>
+                            <p class="text-gray-700 text-sm">The youngest of the Rizal children, known as "Choleng." She married Pantaleon Quintero and was known for her beauty and grace. Despite being the youngest, Soledad was mature beyond her years and maintained the family's unity after José's death.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <h4 class="text-lg font-semibold mb-2">Family Influence on José</h4>
+                        <p class="text-gray-700">The Rizal siblings created a nurturing environment that fostered José's intellectual and moral development. Their collective support, particularly from Paciano and Saturnina, enabled José to pursue his education and eventually become the national hero. The family's values of education, patriotism, and service to others were instilled in all the children and were particularly evident in José's life and works.</p>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Social Status</h3>
+                    <p class="text-gray-700 mb-6">The Rizal family belonged to the principalia class, a privileged group of native elites who served as intermediaries between Spanish authorities and common Filipinos. They were relatively wealthy landowners and merchants, which afforded Rizal educational opportunities unavailable to most Filipinos of his time. However, despite their status, the family still experienced discrimination under the Spanish colonial system.</p>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Childhood and Early Influences</h3>
+                    
+                    <div class="relative mb-8">
+                        <div class="absolute left-5 top-0 bottom-0 w-0.5 bg-primary"></div>
+                        
+                        <div class="relative pl-16 pb-8 timeline-item">
+                            <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">1</div>
+                            <h4 class="text-xl font-semibold mb-2">Early Childhood (1861-1867)</h4>
+                            <p class="text-gray-700">Rizal grew up in a comfortable home in Calamba, surrounded by books, art, and music. From an early age, he displayed remarkable intelligence and curiosity. His mother, Teodora, taught him to read and write before he was five years old and instilled in him a love for literature and learning.</p>
+                        </div>
+                        
+                        <div class="relative pl-16 pb-8 timeline-item">
+                            <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">2</div>
+                            <h4 class="text-xl font-semibold mb-2">Formative Experiences</h4>
+                            <p class="text-gray-700">Several childhood experiences profoundly influenced Rizal's worldview:</p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mt-2">
+                                <li>The story of the moth and the flame, which his mother told him, teaching him about sacrifice and persistence</li>
+                                <li>Witnessing the unjust arrest of his mother on false charges of attempting to poison her sister-in-law</li>
+                                <li>Learning about the execution of the three Filipino priests (GOMBURZA) in 1872, which awakened his sense of injustice</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="relative pl-16 timeline-item">
+                            <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">3</div>
+                            <h4 class="text-xl font-semibold mb-2">Artistic and Literary Beginnings</h4>
+                            <p class="text-gray-700">Even as a child, Rizal showed remarkable artistic talent. He created clay sculptures, drew sketches, and wrote poetry. His uncle, José Alberto, encouraged his artistic pursuits and taught him painting, sketching, and sculpture. These early creative expressions foreshadowed his later literary and artistic achievements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row gap-8 mb-8">
+                        <div class="md:w-1/2">
+                            <img src="images/clid.jpg" alt="Young Rizal studying" class="w-full h-auto rounded-lg shadow-sm">
+                            <p class="text-sm text-gray-500 mt-2 italic">Young Rizal studying in his childhood home in Calamba</p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold mb-4">Early Education</h3>
+                            
+                            <h4 class="text-xl font-semibold mb-2">Home Education</h4>
+                            <p class="text-gray-700 mb-4">Rizal's first teachers were his mother and private tutors. Teodora Alonso taught him reading and writing, while private tutors instructed him in Latin and Spanish. This home education provided him with a strong foundation in languages and literature.</p>
+                            
+                            <h4 class="text-xl font-semibold mb-2">Formal Schooling</h4>
+                            <p class="text-gray-700">Rizal's formal education began at age nine when he was sent to Biñan, Laguna, to study under Justiniano Aquino Cruz. Though he initially struggled with homesickness, he quickly excelled academically, surpassing many older students. His experiences in Biñan, including encounters with bullying and unfair treatment, further shaped his character and determination.</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Academic Journey</h3>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2">Ateneo Municipal (1872-1877)</h4>
+                            <p class="text-gray-700 mb-4">At age 11, Rizal enrolled at the Ateneo Municipal in Manila, a Jesuit institution that offered quality education. Despite initial challenges:</p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>He excelled academically, consistently earning top marks</li>
+                                <li>He won literary contests and medals in various subjects</li>
+                                <li>He developed his artistic talents under the guidance of Spanish professors</li>
+                                <li>He graduated with the highest honors (sobresaliente) in 1877</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2">University of Santo Tomas (1877-1882)</h4>
+                            <p class="text-gray-700 mb-4">After Ateneo, Rizal enrolled at the University of Santo Tomas to study medicine, specializing in ophthalmology to help cure his mother's developing eye condition. His experiences at UST were less positive than at Ateneo:</p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>He encountered discrimination from Dominican professors</li>
+                                <li>He witnessed the gap in educational methods between Spanish and progressive European universities</li>
+                                <li>He became increasingly aware of social injustices in the colonial system</li>
+                                <li>Despite challenges, he continued to excel in his studies</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Literary and Intellectual Development</h3>
+                    <p class="text-gray-700 mb-4">During his early education, Rizal developed the intellectual foundations that would later define his contributions to Philippine society:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-2 text-primary">Multilingualism</h4>
+                            <p class="text-gray-700">By his teenage years, Rizal was proficient in multiple languages, including Tagalog, Spanish, Latin, and Greek. He would later learn many more languages during his travels abroad.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-2 text-primary">Literary Works</h4>
+                            <p class="text-gray-700">He began writing poetry and essays at a young age. His early poem "Sa Aking Mga Kabata" ("To My Fellow Children") is believed to have been written when he was just eight years old.</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-2 text-primary">Critical Thinking</h4>
+                            <p class="text-gray-700">His education fostered a critical mindset that allowed him to question the prevailing social and political conditions in the Philippines.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 border-l-4 border-primary p-4 mb-6">
+                        <p class="text-gray-700 italic">"Ang hindi magmahal sa sariling wika, masahol pa sa hayop at malansang isda."</p>
+                        <p class="text-gray-500 mt-2">("One who does not love his own language is worse than an animal and a stinking fish.") — Attributed to young Rizal in "Sa Aking Mga Kabata"</p>
+                    </div>
+                    
+                    <p class="text-gray-700">Rizal's early life and education laid the groundwork for his later achievements as a writer, scholar, and national hero. The values instilled by his family, his educational experiences, and his early exposure to injustice shaped his character and prepared him for his future role in advocating for reforms in the Philippines.</p>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#early-life-quiz" class="px-6 py-3 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors shadow-md whitespace-nowrap">Test Your Knowledge</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Higher Education Section -->
+    <section id="higher-education" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Rizal's Life: Higher Education and Life Abroad</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600">Exploring Rizal's intellectual journey through Europe and his development as a scholar and reformist</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                    <h3 class="text-2xl font-bold mb-4">Decision to Study Abroad</h3>
+                    <p class="text-gray-700 mb-6">In 1882, at the age of 21, Rizal made the momentous decision to continue his studies in Europe. Several factors influenced this decision:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2 text-primary">Academic Aspirations</h4>
+                            <p class="text-gray-700">Rizal sought to complete his medical education, particularly in ophthalmology, to help treat his mother's eye condition. He was also drawn to the advanced educational systems of European universities.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2 text-primary">Discrimination at UST</h4>
+                            <p class="text-gray-700">He experienced discrimination at the University of Santo Tomas, where Filipino students were often treated as inferior to their Spanish counterparts.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2 text-primary">Political Awakening</h4>
+                            <p class="text-gray-700">The execution of GOMBURZA in 1872 and other injustices had awakened his political consciousness. He believed that education in Europe would provide him with knowledge and perspectives to advocate for reforms.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2 text-primary">Family Support</h4>
+                            <p class="text-gray-700">His brother Paciano and other family members supported his decision, recognizing his potential and the value of European education for his development.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row gap-8 mb-8">
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold mb-4">European Education</h3>
+                            
+                            <h4 class="text-xl font-semibold mb-2">Spain (1882-1885)</h4>
+                            <p class="text-gray-700 mb-4">Rizal's first destination was Spain, where he enrolled at the Universidad Central de Madrid:</p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li>He pursued a licentiate in medicine</li>
+                                <li>He simultaneously studied philosophy and letters</li>
+                                <li>He completed his medical degree in 1884</li>
+                                <li>He earned his licentiate in philosophy and letters in 1885 with excellent grades</li>
+                            </ul>
+                            
+                            <h4 class="text-xl font-semibold mb-2">France and Germany (1885-1887)</h4>
+                            <p class="text-gray-700 mb-4">After Spain, Rizal continued his medical specialization:</p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>In Paris, he worked as an assistant to Dr. Louis de Wecker, a renowned ophthalmologist</li>
+                                <li>In Heidelberg, Germany, he studied under Dr. Otto Becker, completing his ophthalmology specialization</li>
+                                <li>He also attended lectures in sciences, languages, and other subjects at various German universities</li>
+                            </ul>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="images/u.jpg" alt="Rizal studying in Europe" class="w-full h-auto rounded-lg shadow-sm">    
+                             <p class="text-sm text-gray-500 mt-2 italic">Rizal studying at a European university, where he expanded his knowledge and worldview</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Intellectual and Cultural Exposure</h3>
+                    <p class="text-gray-700 mb-4">Rizal's time in Europe exposed him to a wealth of intellectual and cultural influences:</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">1</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Enlightenment Ideas</h4>
+                                <p class="text-gray-700">He immersed himself in Enlightenment philosophy, studying works by Voltaire, Rousseau, and other thinkers who advocated for reason, liberty, and equality. These ideas reinforced his belief in the importance of education and human rights.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">2</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Scientific Advancement</h4>
+                                <p class="text-gray-700">He witnessed Europe's scientific and technological progress, which contrasted sharply with the Philippines' underdevelopment under Spanish rule. This strengthened his conviction that the Philippines needed modernization and educational reforms.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">3</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Liberal Politics</h4>
+                                <p class="text-gray-700">He observed democratic movements and constitutional governments in action, providing him with models for the political reforms he would advocate for the Philippines.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">4</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Cultural Diversity</h4>
+                                <p class="text-gray-700">He traveled extensively throughout Europe, experiencing different cultures, languages, and social systems. This broadened his perspective and helped him envision a more progressive future for the Philippines.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">The Propaganda Movement</h3>
+                    <p class="text-gray-700 mb-6">While in Europe, Rizal became actively involved in the Propaganda Movement, a group of Filipino expatriates advocating for reforms in the Spanish colonial administration of the Philippines:</p>
+                    
+                    <div class="bg-blue-50 border-l-4 border-primary p-4 mb-6">
+                        <h4 class="text-xl font-semibold mb-2">La Solidaridad</h4>
+                        <p class="text-gray-700">Rizal contributed articles to La Solidaridad, the movement's newspaper founded in 1889. Through this platform, he and fellow reformists advocated for:</p>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mt-2">
+                            <li>Philippine representation in the Spanish Cortes (parliament)</li>
+                            <li>Equal rights for Filipinos and Spaniards</li>
+                            <li>Secularization of Philippine parishes</li>
+                            <li>Freedom of speech, assembly, and press</li>
+                            <li>Educational reforms in the Philippines</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">Key figures in the Propaganda Movement who worked alongside Rizal included:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <h4 class="text-lg font-semibold mb-2">Marcelo H. del Pilar</h4>
+                            <p class="text-gray-700">Journalist and editor of La Solidaridad</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <h4 class="text-lg font-semibold mb-2">Graciano López Jaena</h4>
+                            <p class="text-gray-700">Orator and founder of La Solidaridad</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <h4 class="text-lg font-semibold mb-2">Mariano Ponce</h4>
+                            <p class="text-gray-700">Writer and one of the movement's key organizers</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Literary Works and Intellectual Contributions</h3>
+                    
+                    <div class="flex flex-col md:flex-row gap-8 mb-8">
+                        <div class="md:w-1/2">
+                            <img src="https://readdy.ai/api/search-image?query=A%20still%20life%20composition%20showing%20Jose%20Rizals%20novels%20Noli%20Me%20Tangere%20and%20El%20Filibusterismo%2C%20along%20with%20a%20quill%20pen%2C%20inkwell%2C%20and%20papers.%20The%20image%20should%20have%20dramatic%20lighting%20highlighting%20the%20books%20as%20important%20literary%20works%2C%20with%20period-accurate%20details%20of%2019th%20century%20writing%20implements%20and%20book%20binding%20styles.&width=600&height=400&seq=rizal11&orientation=landscape" alt="Rizal's Literary Works" class="w-full h-auto rounded-lg shadow-sm">
+                            <p class="text-sm text-gray-500 mt-2 italic">Rizal's novels Noli Me Tangere and El Filibusterismo became powerful critiques of Spanish colonial rule</p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <p class="text-gray-700 mb-4">During his time in Europe, Rizal produced his most significant literary works:</p>
+                            
+                            <h4 class="text-xl font-semibold mb-2">Noli Me Tangere (1887)</h4>
+                            <p class="text-gray-700 mb-4">Written in Spanish and published in Berlin, this novel exposed the abuses of Spanish colonial rule in the Philippines, particularly by the friars. The title, meaning "Touch Me Not," refers to Christ's words to Mary Magdalene after his resurrection and symbolizes the untouchable nature of the colonial system's problems.</p>
+                            
+                            <h4 class="text-xl font-semibold mb-2">El Filibusterismo (1891)</h4>
+                            <p class="text-gray-700">The sequel to Noli Me Tangere, published in Ghent, Belgium, this darker novel depicts the failure of reform efforts and explores themes of revenge, revolution, and redemption. The title refers to "subversion" or "sedition," reflecting the more radical tone of the work.</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">Beyond his novels, Rizal made other significant intellectual contributions:</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2">Annotations to Morga's Sucesos</h4>
+                            <p class="text-gray-700">Rizal annotated Antonio de Morga's historical work "Sucesos de las Islas Filipinas" (Events in the Philippine Islands), published in 1609. Through his annotations, Rizal challenged the Spanish narrative of Philippine history and highlighted the advanced civilization that existed in the Philippines before colonization.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2">Scientific Research</h4>
+                            <p class="text-gray-700">He conducted ethnographic, anthropological, and linguistic research, contributing to the scientific understanding of Southeast Asian cultures. He discovered several new species of animals, including a type of flying dragon, which was named after him (Draco rizali).</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-2">Essays and Articles</h4>
+                            <p class="text-gray-700">He wrote numerous essays on Philippine society, culture, and politics, including "The Indolence of the Filipinos" and "The Philippines A Century Hence," which analyzed the causes of social problems and predicted the future of the country.</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Return to the Philippines and Exile</h3>
+                    <p class="text-gray-700 mb-4">After years abroad, Rizal returned to the Philippines in 1887, motivated by:</p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-6">
+                        <li>Concern for his family, who were facing harassment from Spanish authorities and conflicts with Dominican friars over land</li>
+                        <li>Desire to practice ophthalmology and treat his mother's eye condition</li>
+                        <li>Wish to experience firsthand the conditions in his homeland</li>
+                    </ul>
+                    
+                    <p class="text-gray-700 mb-4">However, his return was short-lived. The publication of Noli Me Tangere had made him a marked man. After only six months, he was forced to leave due to threats to his life and growing tensions with Spanish authorities.</p>
+                    
+                    <p class="text-gray-700 mb-4">Rizal's second return to the Philippines in 1892 led to his exile to Dapitan in Mindanao, where he spent four productive years (1892-1896):</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-2 text-primary">Medical Practice</h4>
+                            <p class="text-gray-700">He established a medical practice, treating locals and even performing a successful cataract operation on his mother</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-2 text-primary">Educational Initiatives</h4>
+                            <p class="text-gray-700">He founded a school for boys, teaching languages, sciences, and physical education</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-2 text-primary">Community Development</h4>
+                            <p class="text-gray-700">He implemented agricultural and economic projects, including a water system for the community</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-2 text-primary">Scientific Research</h4>
+                            <p class="text-gray-700">He continued his scientific studies, collecting specimens and corresponding with European scientists</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Legacy of Rizal's Education and Life Abroad</h3>
+                    <p class="text-gray-700 mb-4">Rizal's European education and experiences profoundly shaped his worldview and contributions to Philippine society:</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">1</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Intellectual Foundation</h4>
+                                <p class="text-gray-700">His education provided him with the knowledge and analytical skills to articulate the grievances and aspirations of Filipinos effectively.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">2</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Reform Vision</h4>
+                                <p class="text-gray-700">His exposure to liberal ideas and progressive societies in Europe informed his vision for reforms in the Philippines, emphasizing education, equality, and justice.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">3</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">National Consciousness</h4>
+                                <p class="text-gray-700">His writings, particularly his novels, awakened a sense of national identity among Filipinos and exposed the injustices of colonial rule to an international audience.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">4</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold">Educational Model</h4>
+                                <p class="text-gray-700">His own pursuit of knowledge and excellence set a standard for Filipino students and intellectuals, emphasizing the value of education in personal and national development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="#higher-education-quiz" class="px-6 py-3 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors shadow-md whitespace-nowrap">Test Your Knowledge</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quizzes Section -->
+    <section id="quizzes" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Test Your Knowledge</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600">Challenge yourself with these quizzes to reinforce your understanding of José Rizal's life and legacy</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Quiz Card 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                        <div class="h-48 overflow-hidden bg-primary">
+                            <div class="h-full flex items-center justify-center text-white">
+                                <div class="text-center p-6">
+                                    <i class="ri-file-list-3-line text-5xl mb-2"></i>
+                                    <h3 class="text-2xl font-bold">The Rizal Law</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Test your knowledge about Republic Act 1425 and its significance in Philippine education.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">10 questions</span>
+                                <a href="#rizal-law-quiz" class="px-4 py-2 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors whitespace-nowrap">Start Quiz</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quiz Card 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                        <div class="h-48 overflow-hidden bg-primary">
+                            <div class="h-full flex items-center justify-center text-white">
+                                <div class="text-center p-6">
+                                    <i class="ri-building-line text-5xl mb-2"></i>
+                                    <h3 class="text-2xl font-bold">19th Century Philippines</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Challenge yourself on the historical context and social conditions of Rizal's time.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">10 questions</span>
+                                <a href="#19th-century-quiz" class="px-4 py-2 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors whitespace-nowrap">Start Quiz</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quiz Card 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                        <div class="h-48 overflow-hidden bg-primary">
+                            <div class="h-full flex items-center justify-center text-white">
+                                <div class="text-center p-6">
+                                    <i class="ri-home-heart-line text-5xl mb-2"></i>
+                                    <h3 class="text-2xl font-bold">Early Life</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Explore Rizal's family background, childhood experiences, and early education.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">10 questions</span>
+                                <a href="#early-life-quiz" class="px-4 py-2 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors whitespace-nowrap">Start Quiz</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quiz Card 4 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                        <div class="h-48 overflow-hidden bg-primary">
+                            <div class="h-full flex items-center justify-center text-white">
+                                <div class="text-center p-6">
+                                    <i class="ri-book-open-line text-5xl mb-2"></i>
+                                    <h3 class="text-2xl font-bold">Higher Education</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Test your knowledge about Rizal's academic pursuits and life abroad.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">10 questions</span>
+                                <a href="#higher-education-quiz" class="px-4 py-2 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors whitespace-nowrap">Start Quiz</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quiz Container -->
+                <div id="quiz-container" class="hidden bg-white rounded-lg shadow-md p-8">
+                    <div id="quiz-header" class="mb-8">
+                        <h3 id="quiz-title" class="text-2xl font-bold mb-2">Quiz Title</h3>
+                        <p id="quiz-description" class="text-gray-600">Quiz description goes here.</p>
+                    </div>
+                    
+                    <div id="quiz-progress" class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span id="question-counter" class="text-sm font-medium">Question 1 of 10</span>
+                            <span id="quiz-score" class="text-sm font-medium">Score: 0/10</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div id="progress-bar" class="bg-primary h-2.5 rounded-full" style="width: 10%"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="question-container" class="mb-8">
+                        <h4 id="question-text" class="text-xl font-semibold mb-4">Question text goes here?</h4>
+                        <div id="options-container" class="space-y-3">
+                            <!-- Options will be dynamically inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div id="feedback-container" class="hidden mb-6 p-4 rounded-lg">
+                        <p id="feedback-text" class="font-medium"></p>
+                        <p id="explanation-text" class="text-gray-600 mt-2"></p>
+                    </div>
+                    
+                    <div id="quiz-controls" class="flex justify-between">
+                        <button id="prev-button" class="px-4 py-2 bg-gray-200 text-gray-700 font-medium rounded-button hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap">Previous</button>
+                        <button id="next-button" class="px-4 py-2 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors whitespace-nowrap">Next Question</button>
+                    </div>
+                    
+                    <div id="results-container" class="hidden text-center py-8">
+                        <div class="mb-6">
+                            <div id="score-circle" class="w-32 h-32 rounded-full flex items-center justify-center mx-auto border-8 border-primary">
+                                <span id="final-score" class="text-3xl font-bold">0/10</span>
+                            </div>
+                        </div>
+                        
+                        <h3 id="result-title" class="text-2xl font-bold mb-2">Quiz Completed!</h3>
+                        <p id="result-message" class="text-gray-600 mb-6">Your performance message goes here.</p>
+                        
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <button id="retry-button" class="px-6 py-3 bg-primary text-white font-medium rounded-button hover:bg-blue-700 transition-colors whitespace-nowrap">Retry Quiz</button>
+                            <button id="back-to-quizzes" class="px-6 py-3 bg-gray-200 text-gray-700 font-medium rounded-button hover:bg-gray-300 transition-colors whitespace-nowrap">Back to Quizzes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Rizal Law</h3>
+                    <p class="text-gray-400 mb-4">An educational resource dedicated to the study of José Rizal's life, works, and legacy as mandated by Republic Act 1425.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-facebook-fill text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-twitter-fill text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-instagram-fill text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-youtube-fill text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#rizal-law" class="text-gray-400 hover:text-white transition-colors">The Rizal Law</a></li>
+                        <li><a href="#19th-century" class="text-gray-400 hover:text-white transition-colors">19th Century Philippines</a></li>
+                        <li><a href="#early-life" class="text-gray-400 hover:text-white transition-colors">Early Life</a></li>
+                        <li><a href="#higher-education" class="text-gray-400 hover:text-white transition-colors">Higher Education</a></li>
+                        <li><a href="#quizzes" class="text-gray-400 hover:text-white transition-colors">Quizzes</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Rizal's Complete Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Historical Archives</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Educational Materials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Research Papers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Bibliography</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="ri-map-pin-line mt-1 mr-2"></i>
+                            <span class="text-gray-400">National Historical Commission of the Philippines, Manila</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-phone-line mr-2"></i>
+                            <span class="text-gray-400">(+63) 2-8523-1011</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-mail-line mr-2"></i>
+                            <span class="text-gray-400">info@rizallaw.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2025 Rizal Law Educational Website. All rights reserved.</p>
+                <p class="mt-2">Developed in compliance with Republic Act 1425.</p>
+                <p class="mt-4">Last updated: June 5, 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+        <i class="ri-arrow-up-line text-xl"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script id="mobile-menu-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                
+                // Change icon based on menu state
+                const menuIcon = mobileMenuButton.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('ri-close-line');
+                    menuIcon.classList.add('ri-menu-line');
+                } else {
+                    menuIcon.classList.remove('ri-menu-line');
+                    menuIcon.classList.add('ri-close-line');
+                }
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    const menuIcon = mobileMenuButton.querySelector('i');
+                    menuIcon.classList.remove('ri-close-line');
+                    menuIcon.classList.add('ri-menu-line');
+                });
+            });
+        });
+    </script>
+
+    <script id="back-to-top-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            // Smooth scroll to top when button is clicked
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <script id="smooth-scroll-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="quiz-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quiz data
+            const quizzes = {
+                'rizal-law-quiz': {
+                    title: 'The Rizal Law Quiz',
+                    description: 'Test your knowledge about Republic Act 1425 and its significance in Philippine education.',
+                    questions: [
+                        {
+                            question: 'When was Republic Act 1425 (Rizal Law) enacted?',
+                            options: ['June 12, 1956', 'June 19, 1956', 'December 30, 1956', 'December 30, 1955'],
+                            answer: 0,
+                            explanation: 'Republic Act 1425, commonly known as the Rizal Law, was enacted on June 12, 1956.'
+                        },
+                        {
+                            question: 'Who authored the Rizal Law?',
+                            options: ['José P. Laurel', 'Claro M. Recto', 'Ramon Magsaysay', 'Carlos P. Garcia'],
+                            answer: 1,
+                            explanation: 'The Rizal Law was authored by Senator Claro M. Recto.'
+                        },
+                        {
+                            question: 'Which of Rizal\'s works are specifically mentioned in the Rizal Law as required reading?',
+                            options: ['El Filibusterismo only', 'Noli Me Tangere only', 'Both Noli Me Tangere and El Filibusterismo', 'Neither of his novels'],
+                            answer: 2,
+                            explanation: 'The Rizal Law specifically requires the teaching of both Noli Me Tangere and El Filibusterismo as part of the curriculum.'
+                        },
+                        {
+                            question: 'What is the main purpose of the Rizal Law?',
+                            options: ['To promote Spanish culture', 'To honor José Rizal and inspire patriotism among youth', 'To increase literacy rates', 'To promote religious education'],
+                            answer: 1,
+                            explanation: 'The main purpose of the Rizal Law is to honor José Rizal, to rekindle the spirit of patriotism and love of country, especially among the youth.'
+                        },
+                        {
+                            question: 'Which group strongly opposed the passage of the Rizal Law?',
+                            options: ['Public school teachers', 'Catholic Church authorities', 'University students', 'Filipino nationalists'],
+                            answer: 1,
+                            explanation: 'The Catholic Church authorities strongly opposed the passage of the Rizal Law due to anti-clerical themes in Rizal\'s novels.'
+                        },
+                        {
+                            question: 'What compromise was included in the Rizal Law to address religious concerns?',
+                            options: ['Removal of all anti-clerical content from the novels', 'Students with religious objections could be exempt from reading the novels', 'Religious institutions were exempt from teaching Rizal', 'The law would only apply to public schools'],
+                            answer: 1,
+                            explanation: 'A compromise was included allowing students with religious objections to be exempt from reading the novels, though they would still need to study Rizal\'s life and other writings.'
+                        },
+                        {
+                            question: 'In which educational level is the study of Rizal\'s life and works mandatory according to the law?',
+                            options: ['Elementary schools only', 'High schools only', 'Colleges and universities only', 'All schools, colleges, and universities'],
+                            answer: 3,
+                            explanation: 'The Rizal Law mandates the teaching of Rizal\'s life, works, and writings in all schools, colleges, and universities in the Philippines.'
+                        },
+                        {
+                            question: 'What does the Rizal Law require regarding the editions of Rizal\'s novels to be used?',
+                            options: ['Censored editions only', 'Original or unexpurgated editions', 'Simplified editions for students', 'Illustrated editions only'],
+                            answer: 1,
+                            explanation: 'The law requires that the original or unexpurgated editions of Noli Me Tangere and El Filibusterismo be used as basic texts.'
+                        },
+                        {
+                            question: 'Which government body was tasked with ensuring the availability of Rizal\'s works for educational institutions?',
+                            options: ['Department of Education', 'Board of National Education', 'National Historical Commission', 'Commission on Higher Education'],
+                            answer: 1,
+                            explanation: 'The Board of National Education was tasked with ensuring the availability of adequate copies of Rizal\'s works for all educational institutions.'
+                        },
+                        {
+                            question: 'What is required for graduation from colleges and universities according to the Rizal Law?',
+                            options: ['Writing a thesis about Rizal', 'Visiting Rizal\'s monument', 'Completion of courses on Rizal', 'Memorizing passages from Rizal\'s novels'],
+                            answer: 2,
+                            explanation: 'The completion of courses on Rizal is required for graduation from any college or university according to the Rizal Law.'
+                        }
+                    ]
+                },
+                '19th-century-quiz': {
+                    title: '19th Century Philippines Quiz',
+                    description: 'Test your knowledge about the historical context and social conditions during Rizal\'s time.',
+                    questions: [
+                        {
+                            question: 'How long had the Philippines been under Spanish colonial rule by the 19th century?',
+                            options: ['Less than 100 years', 'About 200 years', 'Over 300 years', 'About 50 years'],
+                            answer: 2,
+                            explanation: 'By the 19th century, the Philippines had been under Spanish colonial rule for over three centuries, since the mid-16th century.'
+                        },
+                        {
+                            question: 'Who was at the top of the social hierarchy in 19th century Philippines?',
+                            options: ['Insulares (Creoles)', 'Peninsulares', 'Mestizos', 'Indios'],
+                            answer: 1,
+                            explanation: 'Peninsulares (Spanish-born Spaniards) occupied the highest government positions and enjoyed the most privileges in the social hierarchy.'
+                        },
+                        {
+                            question: 'What significant economic change occurred in the Philippines in 1834?',
+                            options: ['Introduction of the encomienda system', 'Opening of Philippine ports to international trade', 'Establishment of the tobacco monopoly', 'Introduction of the peso as currency'],
+                            answer: 1,
+                            explanation: 'In 1834, Philippine ports were opened to international trade, ending the galleon trade monopoly and integrating the Philippines into the global economy.'
+                        },
+                        {
+                            question: 'Which group controlled education in 19th century Philippines?',
+                            options: ['The Spanish government', 'Filipino intellectuals', 'The Catholic Church and religious orders', 'Chinese merchants'],
+                            answer: 2,
+                            explanation: 'Education was primarily controlled by the Catholic Church and religious orders, with a focus on religious instruction.'
+                        },
+                        {
+                            question: 'What event in 1872 became a turning point in Philippine history and deeply influenced Rizal?',
+                            options: ['The opening of the Suez Canal', 'The execution of GOMBURZA', 'The establishment of the University of Santo Tomas', 'The Cavite Mutiny only'],
+                            answer: 1,
+                            explanation: 'The execution of three Filipino priests—Gomez, Burgos, and Zamora (GOMBURZA)—in 1872 for alleged involvement in the Cavite Mutiny became a turning point in Philippine history and deeply influenced Rizal.'
+                        },
+                        {
+                            question: 'What was the Propaganda Movement?',
+                            options: ['A revolutionary group seeking independence through armed struggle', 'A group of Filipino expatriates advocating for reforms through writings', 'A Spanish campaign to promote Catholicism', 'A movement to promote Filipino products'],
+                            answer: 1,
+                            explanation: 'The Propaganda Movement was a group of educated Filipinos in Europe, including Rizal, who advocated for reforms through writings and political activities.'
+                        },
+                        {
+                            question: 'What was the name of the newspaper published by the Propaganda Movement?',
+                            options: ['La Solidaridad', 'El Filibusterismo', 'Diariong Tagalog', 'La Independencia'],
+                            answer: 0,
+                            explanation: 'La Solidaridad was the newspaper published by the Propaganda Movement that called for Philippine representation in the Spanish Cortes and other reforms.'
+                        },
+                        {
+                            question: 'What was the principalia class in 19th century Philippines?',
+                            options: ['Spanish military officers', 'Chinese merchants', 'Native Filipino elites who served as intermediaries', 'Spanish friars'],
+                            answer: 2,
+                            explanation: 'The principalia was a privileged group of native elites who served as intermediaries between the Spanish authorities and the common people.'
+                        },
+                        {
+                            question: 'Which revolutionary organization was founded by Andres Bonifacio in 1892?',
+                            options: ['La Liga Filipina', 'Katipunan', 'La Solidaridad', 'Propaganda Movement'],
+                            answer: 1,
+                            explanation: 'The Katipunan was founded by Andres Bonifacio in 1892 and sought independence through armed revolution.'
+                        },
+                        {
+                            question: 'What cultural development occurred in the Philippines during the 19th century?',
+                            options: ['Decline of native languages', 'Emergence of a Filipino national consciousness', 'Abandonment of pre-colonial traditions', 'Decrease in literacy rates'],
+                            answer: 1,
+                            explanation: 'The 19th century was a period of cultural awakening for the Philippines, marked by the emergence of a Filipino national consciousness and identity.'
+                        }
+                    ]
+                },
+                'early-life-quiz': {
+                    title: 'Rizal\'s Early Life Quiz',
+                    description: 'Test your knowledge about Rizal\'s family background, childhood, and early education.',
+                    questions: [
+                        {
+                            question: 'When and where was José Rizal born?',
+                            options: ['June 19, 1861, in Calamba, Laguna', 'June 19, 1860, in Manila', 'December 30, 1861, in Calamba, Laguna', 'June 12, 1861, in Dapitan'],
+                            answer: 0,
+                            explanation: 'José Rizal was born on June 19, 1861, in Calamba, Laguna.'
+                        },
+                        {
+                            question: 'What were the names of Rizal\'s parents?',
+                            options: ['Francisco Mercado Rizal and Teodora Alonso Realonda', 'José Protasio Rizal and Maria Alonso', 'Francisco Rizal and Teodora Mercado', 'Paciano Rizal and Narcisa Alonso'],
+                            answer: 0,
+                            explanation: 'Rizal\'s parents were Francisco Mercado Rizal and Teodora Alonso Realonda.'
+                        },
+                        {
+                            question: 'How many siblings did Rizal have?',
+                            options: ['5', '7', '9', '10'],
+                            answer: 3,
+                            explanation: 'Rizal had 10 siblings, being the seventh of eleven children.'
+                        },
+                        {
+                            question: 'Who was Rizal\'s only brother and closest confidant?',
+                            options: ['Paciano', 'José Alberto', 'Saturnino', 'Lorenzo'],
+                            answer: 0,
+                            explanation: 'Paciano was Rizal\'s only brother and closest confidant who protected and supported him throughout his life.'
+                        },
+                        {
+                            question: 'What social class did the Rizal family belong to?',
+                            options: ['Peninsulares', 'Insulares', 'Principalia', 'Indios'],
+                            answer: 2,
+                            explanation: 'The Rizal family belonged to the principalia class, a privileged group of native elites who served as intermediaries between Spanish authorities and common Filipinos.'
+                        },
+                        {
+                            question: 'Who taught Rizal to read and write before he was five years old?',
+                            options: ['His father', 'His mother', 'His brother Paciano', 'A private tutor'],
+                            answer: 1,
+                            explanation: 'Rizal\'s mother, Teodora Alonso, taught him to read and write before he was five years old and instilled in him a love for literature and learning.'
+                        },
+                        {
+                            question: 'What childhood experience involving his mother profoundly influenced Rizal\'s worldview?',
+                            options: ['Her teaching him multiple languages', 'Her arrest on false charges', 'Her encouragement of his artistic talents', 'Her stories about Filipino folklore'],
+                            answer: 1,
+                            explanation: 'Witnessing the unjust arrest of his mother on false charges of attempting to poison her sister-in-law was a childhood experience that profoundly influenced Rizal\'s worldview.'
+                        },
+                        {
+                            question: 'Where did Rizal begin his formal schooling at age nine?',
+                            options: ['Manila', 'Calamba', 'Biñan, Laguna', 'Dapitan'],
+                            answer: 2,
+                            explanation: 'Rizal\'s formal education began at age nine when he was sent to Biñan, Laguna, to study under Justiniano Aquino Cruz.'
+                        },
+                        {
+                            question: 'Which institution did Rizal attend from 1872 to 1877?',
+                            options: ['University of Santo Tomas', 'Ateneo Municipal', 'San Juan de Letran', 'Escuela Pia'],
+                            answer: 1,
+                            explanation: 'Rizal attended the Ateneo Municipal, a Jesuit institution, from 1872 to 1877, where he excelled academically.'
+                        },
+                        {
+                            question: 'What degree did Rizal pursue at the University of Santo Tomas?',
+                            options: ['Law', 'Philosophy', 'Medicine', 'Engineering'],
+                            answer: 2,
+                            explanation: 'After Ateneo, Rizal enrolled at the University of Santo Tomas to study medicine, specializing in ophthalmology to help cure his mother\'s developing eye condition.'
+                        }
+                    ]
+                },
+                'higher-education-quiz': {
+                    title: 'Rizal\'s Higher Education Quiz',
+                    description: 'Test your knowledge about Rizal\'s academic pursuits, travels abroad, and intellectual development.',
+                    questions: [
+                        {
+                            question: 'In what year did Rizal leave the Philippines to study in Europe?',
+                            options: ['1880', '1882', '1884', '1886'],
+                            answer: 1,
+                            explanation: 'In 1882, at the age of 21, Rizal left the Philippines to continue his studies in Europe.'
+                        },
+                        {
+                            question: 'What was one of the main reasons Rizal decided to study ophthalmology?',
+                            options: ['It was the most prestigious medical specialty', 'To help treat his mother\'s eye condition', 'It was the easiest medical specialty to learn', 'Spanish authorities required it'],
+                            answer: 1,
+                            explanation: 'Rizal sought to complete his medical education, particularly in ophthalmology, to help treat his mother\'s eye condition.'
+                        },
+                        {
+                            question: 'At which university in Spain did Rizal study medicine?',
+                            options: ['Universidad de Barcelona', 'Universidad Central de Madrid', 'Universidad de Salamanca', 'Universidad de Valencia'],
+                            answer: 1,
+                            explanation: 'Rizal enrolled at the Universidad Central de Madrid where he pursued a licentiate in medicine.'
+                        },
+                        {
+                            question: 'What additional field did Rizal study simultaneously with medicine in Spain?',
+                            options: ['Law', 'Engineering', 'Philosophy and letters', 'Fine arts'],
+                            answer: 2,
+                            explanation: 'While studying medicine, Rizal simultaneously studied philosophy and letters, earning a licentiate in this field in 1885.'
+                        },
+                        {
+                            question: 'Under which renowned ophthalmologist did Rizal work as an assistant in Paris?',
+                            options: ['Dr. Louis de Wecker', 'Dr. Otto Becker', 'Dr. Antonio de Morga', 'Dr. Ferdinand Blumentritt'],
+                            answer: 0,
+                            explanation: 'In Paris, Rizal worked as an assistant to Dr. Louis de Wecker, a renowned ophthalmologist.'
+                        },
+                        {
+                            question: 'Where did Rizal complete his ophthalmology specialization?',
+                            options: ['Paris, France', 'Madrid, Spain', 'Heidelberg, Germany', 'London, England'],
+                            answer: 2,
+                            explanation: 'In Heidelberg, Germany, Rizal studied under Dr. Otto Becker, completing his ophthalmology specialization.'
+                        },
+                        {
+                            question: 'Which of Rizal\'s novels was published in Berlin in 1887?',
+                            options: ['El Filibusterismo', 'Noli Me Tangere', 'Sucesos de las Islas Filipinas', 'The Philippines A Century Hence'],
+                            answer: 1,
+                            explanation: 'Noli Me Tangere was written in Spanish and published in Berlin in 1887.'
+                        },
+                        {
+                            question: 'What historical work did Rizal annotate to challenge the Spanish narrative of Philippine history?',
+                            options: ['Historia de Filipinas by Gaspar de San Agustin', 'Sucesos de las Islas Filipinas by Antonio de Morga', 'Historia General de Filipinas by Juan de la Concepcion', 'Crónica de las Islas Filipinas by Miguel López de Legazpi'],
+                            answer: 1,
+                            explanation: 'Rizal annotated Antonio de Morga\'s historical work "Sucesos de las Islas Filipinas" (Events in the Philippine Islands), published in 1609.'
+                        },
+                        {
+                            question: 'Where was El Filibusterismo published in 1891?',
+                            options: ['Madrid, Spain', 'Berlin, Germany', 'Ghent, Belgium', 'Paris, France'],
+                            answer: 2,
+                            explanation: 'El Filibusterismo, the sequel to Noli Me Tangere, was published in Ghent, Belgium in 1891.'
+                        },
+                        {
+                            question: 'What type of animal species did Rizal discover that was later named after him?',
+                            options: ['A type of butterfly', 'A type of flying dragon', 'A type of frog', 'A type of fish'],
+                            answer: 1,
+                            explanation: 'Rizal discovered several new species of animals, including a type of flying dragon, which was named after him (Draco rizali).'
+                        }
+                    ]
+                }
+            };
+            
+            // Quiz variables
+            let currentQuiz = null;
+            let currentQuestionIndex = 0;
+            let score = 0;
+            let userAnswers = [];
+            
+            // DOM elements
+            const quizContainer = document.getElementById('quiz-container');
+            const quizTitle = document.getElementById('quiz-title');
+            const quizDescription = document.getElementById('quiz-description');
+            const questionCounter = document.getElementById('question-counter');
+            const quizScore = document.getElementById('quiz-score');
+            const progressBar = document.getElementById('progress-bar');
+            const questionText = document.getElementById('question-text');
+            const optionsContainer = document.getElementById('options-container');
+            const feedbackContainer = document.getElementById('feedback-container');
+            const feedbackText = document.getElementById('feedback-text');
+            const explanationText = document.getElementById('explanation-text');
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const resultsContainer = document.getElementById('results-container');
+            const finalScore = document.getElementById('final-score');
+            const resultTitle = document.getElementById('result-title');
+            const resultMessage = document.getElementById('result-message');
+            const retryButton = document.getElementById('retry-button');
+            const backToQuizzesButton = document.getElementById('back-to-quizzes');
+            
+            // Quiz links
+            const quizLinks = document.querySelectorAll('a[href^="#"][href$="-quiz"]');
+            quizLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const quizId = this.getAttribute('href').substring(1);
+                    startQuiz(quizId);
+                });
+            });
+            
+            // Start quiz
+            function startQuiz(quizId) {
+                if (!quizzes[quizId]) return;
+                
+                currentQuiz = quizzes[quizId];
+                currentQuestionIndex = 0;
+                score = 0;
+                userAnswers = Array(currentQuiz.questions.length).fill(null);
+                
+                // Update quiz header
+                quizTitle.textContent = currentQuiz.title;
+                quizDescription.textContent = currentQuiz.description;
+                
+                // Show quiz container
+                quizContainer.classList.remove('hidden');
+                resultsContainer.classList.add('hidden');
+                
+                // Load first question
+                loadQuestion();
+                
+                // Scroll to quiz
+                quizContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            // Load question
+            function loadQuestion() {
+                const question = currentQuiz.questions[currentQuestionIndex];
+                
+                // Update question text
+                questionText.textContent = question.question;
+                
+                // Update question counter and progress
+                questionCounter.textContent = `Question ${currentQuestionIndex + 1} of ${currentQuiz.questions.length}`;
+                quizScore.textContent = `Score: ${score}/${currentQuiz.questions.length}`;
+                progressBar.style.width = `${((currentQuestionIndex + 1) / currentQuiz.questions.length) * 100}%`;
+                
+                // Clear options container
+                optionsContainer.innerHTML = '';
+                
+                // Add options
+                question.options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'quiz-option p-4 border rounded-lg cursor-pointer hover:border-primary transition-colors';
+                    
+                    if (userAnswers[currentQuestionIndex] === index) {
+                        optionElement.classList.add('selected');
+                    }
+                    
+                    optionElement.innerHTML = `
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <label class="custom-radio">
+                                    <input type="radio" name="quiz-option" ${userAnswers[currentQuestionIndex] === index ? 'checked' : ''}>
+                                    <span class="radio-mark"></span>
+                                </label>
+                            </div>
+                            <div class="ml-2">
+                                <span>${option}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    optionElement.addEventListener('click', () => selectOption(index));
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                // Hide feedback
+                feedbackContainer.classList.add('hidden');
+                
+                // Update buttons
+                prevButton.disabled = currentQuestionIndex === 0;
+                
+                if (userAnswers[currentQuestionIndex] !== null) {
+                    nextButton.textContent = currentQuestionIndex === currentQuiz.questions.length - 1 ? 'Finish Quiz' : 'Next Question';
+                } else {
+                    nextButton.textContent = 'Skip Question';
+                }
+            }
+            
+            // Select option
+            function selectOption(optionIndex) {
+                userAnswers[currentQuestionIndex] = optionIndex;
+                
+                // Update option styling
+                const options = optionsContainer.querySelectorAll('.quiz-option');
+                options.forEach((option, index) => {
+                    if (index === optionIndex) {
+                        option.classList.add('selected');
+                        option.querySelector('input[type="radio"]').checked = true;
+                    } else {
+                        option.classList.remove('selected');
+                        option.querySelector('input[type="radio"]').checked = false;
+                    }
+                });
+                
+                // Update next button text
+                nextButton.textContent = currentQuestionIndex === currentQuiz.questions.length - 1 ? 'Finish Quiz' : 'Next Question';
+            }
+            
+            // Next question
+            nextButton.addEventListener('click', () => {
+                if (currentQuestionIndex === currentQuiz.questions.length - 1) {
+                    // Show results if on last question
+                    showResults();
+                } else {
+                    // Move to next question
+                    currentQuestionIndex++;
+                    loadQuestion();
+                }
+            });
+            
+            // Previous question
+            prevButton.addEventListener('click', () => {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    loadQuestion();
+                }
+            });
+            
+            // Show results
+            function showResults() {
+                // Calculate score
+                score = 0;
+                userAnswers.forEach((answer, index) => {
+                    if (answer === currentQuiz.questions[index].answer) {
+                        score++;
+                    }
+                });
+                
+                // Update results
+                finalScore.textContent = `${score}/${currentQuiz.questions.length}`;
+                
+                // Set result message based on score
+                const percentage = (score / currentQuiz.questions.length) * 100;
+                
+                if (percentage >= 90) {
+                    resultTitle.textContent = 'Excellent!';
+                    resultMessage.textContent = 'You have an exceptional understanding of this topic. Well done!';
+                } else if (percentage >= 70) {
+                    resultTitle.textContent = 'Good Job!';
+                    resultMessage.textContent = 'You have a solid grasp of this topic, but there\'s still room for improvement.';
+                } else if (percentage >= 50) {
+                    resultTitle.textContent = 'Not Bad!';
+                    resultMessage.textContent = 'You have a basic understanding of this topic. Consider reviewing the material again.';
+                } else {
+                    resultTitle.textContent = 'Keep Learning!';
+                    resultMessage.textContent = 'You need to study this topic more thoroughly. Don\'t give up!';
+                }
+                
+                // Update score circle color based on performance
+                const scoreCircle = document.getElementById('score-circle');
+                if (percentage >= 70) {
+                    scoreCircle.classList.remove('border-primary', 'border-yellow-500', 'border-red-500');
+                    scoreCircle.classList.add('border-green-500');
+                } else if (percentage >= 50) {
+                    scoreCircle.classList.remove('border-primary', 'border-green-500', 'border-red-500');
+                    scoreCircle.classList.add('border-yellow-500');
+                } else {
+                    scoreCircle.classList.remove('border-primary', 'border-green-500', 'border-yellow-500');
+                    scoreCircle.classList.add('border-red-500');
+                }
+                
+                // Show results container
+                resultsContainer.classList.remove('hidden');
+                
+                // Hide question container elements
+                document.getElementById('quiz-progress').classList.add('hidden');
+                document.getElementById('question-container').classList.add('hidden');
+                document.getElementById('quiz-controls').classList.add('hidden');
+                feedbackContainer.classList.add('hidden');
+            }
+            
+            // Retry quiz
+            retryButton.addEventListener('click', () => {
+                // Reset quiz
+                currentQuestionIndex = 0;
+                score = 0;
+                userAnswers = Array(currentQuiz.questions.length).fill(null);
+                
+                // Show question elements
+                document.getElementById('quiz-progress').classList.remove('hidden');
+                document.getElementById('question-container').classList.remove('hidden');
+                document.getElementById('quiz-controls').classList.remove('hidden');
+                
+                // Hide results
+                resultsContainer.classList.add('hidden');
+                
+                // Load first question
+                loadQuestion();
+            });
+            
+            // Back to quizzes
+            backToQuizzesButton.addEventListener('click', () => {
+                quizContainer.classList.add('hidden');
+                document.getElementById('quizzes').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Reset quiz elements for next time
+                document.getElementById('quiz-progress').classList.remove('hidden');
+                document.getElementById('question-container').classList.remove('hidden');
+                document.getElementById('quiz-controls').classList.remove('hidden');
+                resultsContainer.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
